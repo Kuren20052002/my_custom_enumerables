@@ -39,6 +39,18 @@ module Enumerable
     end
     self
   end
+
+  def my_inject(initial_value = nil)
+    if block_given?
+      initial_value = self[0] unless initial_value
+      self.my_each do |element|
+      initial_value = yield(initial_value, element)
+      end
+      initial_value
+    else
+      "Give me a block"
+    end
+  end
 end
 
 # You will first have to define my_each
