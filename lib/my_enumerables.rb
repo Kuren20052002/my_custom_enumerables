@@ -15,13 +15,13 @@ module Enumerable
     false
   end
 
-  def my_count(number = 0)
+  def my_count(number = {no: "way"})
     count = 0
     if block_given?
       self.my_each do |element|
         count += 1 if yield(element)
       end
-    elsif number != 0
+    elsif number != {no: "way"}
       self.my_each do |element|
         count += 1 if element == number
       end
