@@ -39,6 +39,16 @@ module Enumerable
       "Give me a block"
     end
   end
+
+  def my_map
+    if block_given?
+      new_array = []
+      self.my_each{ |element| new_array << yield(element)}
+      new_array
+    else
+      "Give me a block"
+    end
+  end
 end
 
 # You will first have to define my_each
