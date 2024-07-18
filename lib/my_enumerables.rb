@@ -49,6 +49,15 @@ module Enumerable
       "Give me a block"
     end
   end
+
+  def my_none?
+    if block_given?
+      self.my_each{ |element| return false if yield(element)}
+      true
+    else
+      "Give me a block"
+    end
+  end
 end
 
 # You will first have to define my_each
