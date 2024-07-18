@@ -1,30 +1,20 @@
 module Enumerable
   def my_all?
-    self.my_each do |element|
-      return false if !yield(element)
-    end
-
+    self.my_each{ |element| return false if !yield(element)}
     true
   end
 
   def my_any?
-    self.my_each do |element|
-      return true if yield(element)
-    end
-
+    self.my_each{ |element| return true if yield(element) }
     false
   end
 
   def my_count(number = {no: "way"})
     count = 0
     if block_given?
-      self.my_each do |element|
-        count += 1 if yield(element)
-      end
+      self.my_each { |element| count += 1 if yield(element)}
     elsif number != {no: "way"}
-      self.my_each do |element|
-        count += 1 if element == number
-      end
+      self.my_each { |element| count += 1 if element == number}
     else
       return self.length
     end
@@ -43,9 +33,7 @@ module Enumerable
   def my_inject(initial_value = nil)
     if block_given?
       initial_value = self[0] unless initial_value
-      self.my_each do |element|
-      initial_value = yield(initial_value, element)
-      end
+      self.my_each{ |element| initial_value = yield(initial_value, element) }
       initial_value
     else
       "Give me a block"
